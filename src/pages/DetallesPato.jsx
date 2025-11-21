@@ -28,8 +28,8 @@ function DetallesPato() {
         {/* Categoria del pato en negrita  != para que se ponga en negrita¡ ya que en el contenedor__texto... no lo tengo así*/}
         <section>
           <p className="contenedor__texto-largo !font-bold">{pato.categoria}</p>
-          <p className="contenedor__precio !text-xl">{pato.precio}</p>
           <p className="contenedor__texto-largo">{pato.descripcion}</p>
+          <p className="contenedor__precio !text-xl">{pato.precio}</p>
         </section>
 
         <section className="my-4">

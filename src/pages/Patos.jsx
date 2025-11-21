@@ -19,7 +19,7 @@ function Patos() {
                 nombre={pato.nombre}
                 foto={pato.imagen}
                 descripcion={pato.descripcion}
-                categoria={pato.categoria}
+                //categoria={pato.categoria}
                 precio={pato.precio}
               />
             </Link>

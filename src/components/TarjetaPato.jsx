@@ -1,9 +1,15 @@
-
 /**
- * TarjetaPato: Componente que representa una tarjeta individual de pato 
- *  
+ * TarjetaPato: Componente que representa una tarjeta individual de pato
+ *
  */
-function TarjetaPato({nombre, foto, descripcion, categoria, precio, children}) {
+function TarjetaPato({
+  nombre,
+  foto,
+  descripcion,
+  //categoria,
+  precio,
+  children,
+}) {
   return (
     <>
       {/* Navegacion con tabulador (tabIndex) y por si el user hace mucho zoom, para que se adapte (className:...)*/}
@@ -25,12 +31,12 @@ function TarjetaPato({nombre, foto, descripcion, categoria, precio, children}) {
 
         <section>
           {/* Bloque informativo del pato */}
-            <h3 className="font-heading-h5 font-(--heading-h5-font-weight) text-color-black-1 text-[length:var(--heading-h5-font-size)] tracking-[var(--heading-h5-letter-spacing)] leading-[var(--heading-h5-line-height)] whitespace-nowrap [font-style:var(--heading-h5-font-style)]">
-              <strong>{nombre}</strong>
-            </h3>
-            <p className="contenedor__texto-normal">{descripcion}</p>
-            <p className="contenedor__texto-normal">{categoria}</p>
-            <p className="contenedor__precio">{precio}</p>
+          <h3 className="text-black text-lg font-bold baloo tracking-wide leading-tight whitespace-nowrap">
+            <strong>{nombre}</strong>
+          </h3>
+          <p className="contenedor__texto-normal">{descripcion}</p>
+          {/*<p className="contenedor__texto-normal">{categoria}</p>*/}
+          <p className="contenedor__precio">{precio}</p>
         </section>
       </article>
     </>
