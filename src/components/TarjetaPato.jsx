@@ -36,12 +36,9 @@ function TarjetaPato({
             <strong>{nombre}</strong>
           </h3>
           {/*Si hay descripción la renderiza*/}
-          {descripcion && (
-            <p className="contenedor__texto-normal font-bold">{descripcion}</p>
-          )}
+          <p className="contenedor__texto-normal font-bold">{descripcion}</p>
           {/*<p className="contenedor__texto-normal">{categoria}</p>*/}
-          {/*Si hay precio la renderiza*/}
-          {precio && <p className="contenedor__precio">{precio}</p>}
+          <p className="contenedor__precio">{precio}</p>
         </section>
       </article>
     </>
