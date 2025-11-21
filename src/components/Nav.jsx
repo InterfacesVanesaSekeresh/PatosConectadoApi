@@ -9,7 +9,7 @@ function Nav() {
       {/* Hamburguesa solo en móvil */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="text-2xl text-(--color-primary) px-2 py-1 rounded md:hidden"
+        className="text-2xl text-black px-2 py-1 rounded md:hidden"
         aria-controls="menuMovil"
         aria-expanded={isOpen}
         aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}

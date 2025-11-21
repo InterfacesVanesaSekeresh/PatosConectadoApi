@@ -96,7 +96,7 @@ const ducklyns = [
     id: 10,
     nombre: "Pato Chef",
     descripcion:
-      "Sombrero de cocinero y cuchara en mano, listo para preparar burbujas gourmet.",
+      "Sombrero de cocinero y campana en mano, listo para preparar comida.",
     precio: "3,20€",
     categoria: "Profesiones",
     imagen:
