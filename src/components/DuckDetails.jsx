@@ -1,6 +1,21 @@
 import { useParams, useNavigate } from "react-router-dom";
 import ducklyns from "../data/ducklyn";
 
+/**
+ * DuckDetails component - Displays detailed information about a specific duck
+ * 
+ * This component fetches a duck's data based on the URL parameter (id) and renders
+ * its complete information including name, image, category, description, price, and details.
+ * 
+ * @component
+ * @returns {JSX.Element} A detailed view of a duck with image, description, and navigation
+ * 
+ * @example
+ * // Route: /duck/:id
+ * <DuckDetails />
+ * 
+ * @throws {JSX.Element} Returns "Pato no encontrado" message if duck is not found
+ */
 function DuckDetails() {
   const { id } = useParams();
   const navigate = useNavigate();

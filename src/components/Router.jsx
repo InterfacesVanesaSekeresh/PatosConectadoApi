@@ -5,8 +5,23 @@ import DuckDetails from "./DuckDetails.jsx";
 import MainContent from "./MainContent.jsx";
 import Administration from "../pages/Administration.jsx";
 
-
-function App() {
+/**
+ * Router component that defines the application's route structure.
+ * 
+ * Configures all application routes using React Router, including:
+ * - Home page (root path)
+ * - Ducks listing page
+ * - Duck details page (with dynamic ID parameter)
+ * - Administration page
+ * - Redirect from /inicio to root path
+ * - 404 fallback for non-existent routes
+ * 
+ * All routes are nested under the MainContent layout component.
+ * 
+ * @component
+ * @returns {JSX.Element} Routes configuration with nested route structure
+ */
+function Router() {
   return (
     <Routes>
       <Route path="/" element={<MainContent />}>
@@ -30,4 +45,4 @@ function App() {
     </Routes>
   );
 }
-export default App;
+export default Router;

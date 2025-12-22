@@ -1,3 +1,13 @@
+
+/**
+ * SearchBar component for user input with accessibility features
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} props.searchTerm - Current search input value
+ * @param {Function} props.onSearchChange - Callback function triggered on input change, receives the new search term
+ * @param {string} [props.placeholder="Buscar..."] - Placeholder text for the input field
+ * @returns {React.ReactElement} A search input section with styling and accessibility attributes
+ */
 function SearchBar({ searchTerm, onSearchChange, placeholder = "Buscar..." }) {
   return (
     <section className="mb-8 w-full max-w-lg mx-auto">
