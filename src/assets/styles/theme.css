@@ -96,7 +96,7 @@
   --text-normal-bold-font-weight: 700;
   --text-normal-bold-line-height: clamp(18px, 2vw, 22.4px);
 
-  --text-normal-font-size: clamp(12px, 1.5vw, 16px);
+  --text-normal-font-size: clamp(14px, 1.5vw, 16px);
   --text-normal-font-weight: 400;
   --text-normal-line-height: clamp(18px, 2vw, 22.4px);
 

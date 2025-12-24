@@ -1,5 +1,4 @@
 
-
 function Footer() {
   return (
     <footer className="contenedor__barra-principal">

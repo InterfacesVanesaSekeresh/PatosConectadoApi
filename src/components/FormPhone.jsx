@@ -82,7 +82,7 @@ function FormPhone({
               value={duckData.categoria}
               onChange={handleDuckChange}
               className={`mt-1 block w-full p-2 border ${
-                duckErrors.categoria ? "border-red-500" : "border-gray-300"
+                duckErrors.categoria ? "input-error" : "border-gray-300"
               } rounded-md`}
             >
               <option value="" disabled>
@@ -110,7 +110,7 @@ function FormPhone({
             }
             setSiguiente(2);
         }}
-            className="w-full py-2 px-4 rounded-md text-white bg-blue-600"
+            className="btn"
           >
             Siguiente
           </button>
@@ -147,7 +147,7 @@ function FormPhone({
               onChange={handleDuckChange}
               rows="4"
               className={`mt-1 block w-full p-2 border ${
-                duckErrors.descripcion ? "border-red-500" : "border-gray-300"
+                duckErrors.descripcion ? "input-error" : "border-gray-300"
               } rounded-md`}
             />
             {duckErrors.descripcion && (
@@ -159,14 +159,14 @@ function FormPhone({
             <button
               type="button"
               onClick={() => setSiguiente(1)}
-              className="w-full py-2 px-4 rounded-md text-white bg-blue-600"
+              className="btn"
             >
               Atrás
             </button>
 
             <button
               type="submit"
-              className="w-full py-2 px-4 rounded-md text-white bg-blue-600"
+              className="btn"
             >
               Añadir pato
             </button>

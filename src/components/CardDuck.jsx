@@ -20,8 +20,9 @@ function CardDuck({ nombre, foto, descripcion, precio }) {
     <article
       tabIndex={0}
       aria-label={nombre}
-      className="max-w-sm w-full h-full p-6 sm:p-3 rounded-md bg-white shadow-sm sm:shadow-md flex flex-col justify-between"    >
-      <figure className="w-full aspect-square rounded-lg bg-gray-100 overflow-hidden">
+      className="card"    
+      >
+      <figure className="card__img">
         <img
           src={foto}
           alt={`Foto de ${nombre}`}

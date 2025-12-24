@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import MainContent from "../components/MainContent";
 import CardDuck from "../components/CardDuck";
 import ducklyn from "../data/ducklyn";
 import Slogan from "../assets/images/Slogan.png";
@@ -43,7 +42,7 @@ function Home() {
       {/* Grid de patos */}
       <section
         aria-label="Listado de patos destacados"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-stretch"
+        className="grid-patos"
       >
         {ducklyn.slice(0, 8).map((pato) => (
           <Link

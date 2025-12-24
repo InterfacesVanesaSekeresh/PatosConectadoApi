@@ -12,7 +12,7 @@ function FormInput({nombre, id, type, value, onChange, error, errorId}) {
             onChange={onChange}
             required
             className={`mt-1 block w-full p-2 border ${
-              error ? "border-red-500" : "border-gray-300"
+              error ? "input-error" : "border-gray-300"
             } rounded-md shadow-sm focus:ring-blue-800 focus:border-blue-800`}
             aria-invalid={!!error}
             aria-describedby={error ? {errorId} : undefined}

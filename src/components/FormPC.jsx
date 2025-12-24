@@ -56,7 +56,7 @@ function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
           value={duckData.categoria}
           onChange={handleDuckChange}
           className={`mt-1 block w-full p-2 border ${
-            duckErrors.categoria ? "border-red-500" : "border-gray-300"
+            duckErrors.categoria ? "input-error" : "border-gray-300"
           } rounded-md`}
         >
           <option value="" disabled>
@@ -102,7 +102,7 @@ function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
           rows="4"
           minLength={20}
           className={`mt-1 block w-full p-2 border ${
-            duckErrors.descripcion ? "border-red-500" : "border-gray-300"
+            duckErrors.descripcion ? "input-error" : "border-gray-300"
           } rounded-md shadow-sm focus:ring-blue-800 focus:border-blue-800`}
           aria-invalid={!!duckErrors.descripcion}
           aria-describedby={
@@ -118,7 +118,7 @@ function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
 
       <button
         type="submit"
-        className="w-full py-2 px-4 rounded-md text-white bg-blue-600"
+        className="btn"
       >
         Añadir pato
       </button>
