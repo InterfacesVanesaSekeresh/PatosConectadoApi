@@ -34,6 +34,7 @@ function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
         id="nombre"
         type="text"
         value={duckData.nombre}
+        placeholder="Ingresa el nombre del pato"
         onChange={handleDuckChange}
         error={duckErrors.nombre}
         errorId="error-nombre"
@@ -43,6 +44,7 @@ function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
         nombre="Precio:"
         id="precio"
         type="text"
+        placeholder="Ej: 5.99"
         value={duckData.precio}
         onChange={handleDuckChange}
         error={duckErrors.precio}
@@ -74,6 +76,7 @@ function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
         nombre="Imagen:"
         id="imagen"
         type="text"
+        placeholder="URL de la imagen"
         value={duckData.imagen}
         onChange={handleDuckChange}
         error={duckErrors.imagen}
@@ -84,6 +87,7 @@ function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
         nombre="Detalles:"
         id="detalles"
         type="text"
+        placeholder="Breve descripción del pato"
         value={duckData.detalles}
         onChange={handleDuckChange}
         error={duckErrors.detalles}
@@ -97,6 +101,7 @@ function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
         <textarea
           id="descripcion"
           value={duckData.descripcion}
+          placeholder="Descripción detallada del pato"
           onChange={handleDuckChange}
           required
           rows="4"

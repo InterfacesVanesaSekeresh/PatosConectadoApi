@@ -59,6 +59,7 @@ function FormPhone({
             nombre="Pato nombre:"
             id="nombre"
             type="text"
+            placeholder="Ingresa el nombre del pato"
             value={duckData.nombre}
             onChange={handleDuckChange}
             error={duckErrors.nombre}
@@ -69,6 +70,7 @@ function FormPhone({
             nombre="Precio:"
             id="precio"
             type="text"
+            placeholder="Ej: 5.99"
             value={duckData.precio}
             onChange={handleDuckChange}
             error={duckErrors.precio}
@@ -123,6 +125,7 @@ function FormPhone({
             nombre="Imagen:"
             id="imagen"
             type="text"
+            placeholder="URL de la imagen"
             value={duckData.imagen}
             onChange={handleDuckChange}
             error={duckErrors.imagen}
@@ -133,6 +136,7 @@ function FormPhone({
             nombre="Detalles:"
             id="detalles"
             type="text"
+            placeholder="Breve descripción del pato"
             value={duckData.detalles}
             onChange={handleDuckChange}
             error={duckErrors.detalles}
@@ -144,6 +148,7 @@ function FormPhone({
             <textarea
               id="descripcion"
               value={duckData.descripcion}
+              placeholder="Descripción detallada del pato"
               onChange={handleDuckChange}
               rows="4"
               className={`mt-1 block w-full p-2 border ${

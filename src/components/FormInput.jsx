@@ -1,5 +1,5 @@
 
-function FormInput({nombre, id, type, value, onChange, error, errorId}) {
+function FormInput({nombre, id, type, value, onChange, error, errorId, placeholder}) {
     return (
          <section>
           <label htmlFor={id} className="contenedor__texto-largo">
@@ -9,6 +9,7 @@ function FormInput({nombre, id, type, value, onChange, error, errorId}) {
             id={id}
             type={type}
             value={value}
+            placeholder={placeholder}
             onChange={onChange}
             required
             className={`mt-1 block w-full p-2 border ${
