@@ -1,65 +1,75 @@
 import FormInput from "./FormInput";
 /**
- * FormPC Component
- * 
- * A form component for entering and managing duck product information.
- * Renders input fields for duck name, price, category, image URL, details,
- * and a textarea for description. Displays validation errors for each field.
- * 
+ * FormPC - Form component for adding or editing duck entries
+ *
  * @component
+ * A form component that collects duck product information including name, price,
+ * category, image URL, short details, and detailed description. Displays validation
+ * errors for each field and disables submission when errors are present.
+ *
  * @param {Object} props - Component props
- * @param {Object} props.duckData - Object containing the current form data values
- * @param {string} props.duckData.nombre - Duck product name
- * @param {string} props.duckData.precio - Duck product price
- * @param {string} props.duckData.categoria - Selected category
- * @param {string} props.duckData.imagen - Image URL
- * @param {string} props.duckData.detalles - Product details
- * @param {string} props.duckData.descripcion - Product description
- * @param {Object} props.duckErrors - Object containing validation error messages
+ * @param {Object} props.duckData - Object containing the duck form data
+ * @param {string} props.duckData.nombre - Duck name
+ * @param {number} props.duckData.precio - Duck price
+ * @param {string} props.duckData.categoria - Duck category
+ * @param {string} props.duckData.imagen - Duck image URL
+ * @param {string} props.duckData.detalles - Short details about the duck
+ * @param {string} props.duckData.descripcion - Detailed description of the duck
+ * @param {Object} props.duckErrors - Object containing validation errors for each field
  * @param {string} [props.duckErrors.nombre] - Error message for name field
  * @param {string} [props.duckErrors.precio] - Error message for price field
  * @param {string} [props.duckErrors.categoria] - Error message for category field
  * @param {string} [props.duckErrors.imagen] - Error message for image field
  * @param {string} [props.duckErrors.detalles] - Error message for details field
  * @param {string} [props.duckErrors.descripcion] - Error message for description field
- * @param {Array<string>} props.categorias - Array of available category options
+ * @param {string[]} props.categorias - Array of available category options
  * @param {Function} props.handleDuckChange - Callback function to handle input changes
- * @returns {JSX.Element} The rendered form section with input fields and submit button
+ *
+ * @returns {JSX.Element} Form section with input fields, select dropdown, textarea, and submit button
  */
 function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
   return (
     <section className="space-y-4">
       <FormInput
-        nombre="Pato nombre:"
+        nombre="Pato nombre *"
         id="nombre"
         type="text"
         value={duckData.nombre}
         placeholder="Ingresa el nombre del pato"
         onChange={handleDuckChange}
+        autoComplete="name"
         error={duckErrors.nombre}
         errorId="error-nombre"
       />
 
       <FormInput
-        nombre="Precio:"
+        nombre="Precio *"
         id="precio"
-        type="text"
+        type="number"
         placeholder="Ej: 5.99"
         value={duckData.precio}
         onChange={handleDuckChange}
+        autoComplete="price"
         error={duckErrors.precio}
         errorId="error-precio"
       />
 
       <section>
-        <label className="contenedor__texto-largo">Categoría:</label>
+        <label htmlFor="categoria" className="contenedor__texto-largo">
+          Categoría *
+        </label>
         <select
           id="categoria"
           value={duckData.categoria}
           onChange={handleDuckChange}
+          autoComplete="category"
           className={`mt-1 block w-full p-2 border ${
             duckErrors.categoria ? "input-error" : "border-gray-300"
           } rounded-md`}
+          aria-invalid={!!duckErrors.categoria}
+          aria-describedby={
+            duckErrors.categoria ? "error-categoria" : undefined
+          }
         >
           <option value="" disabled>
             Selecciona una categoría
@@ -70,39 +80,47 @@ function FormPC({ duckData, duckErrors, categorias, handleDuckChange }) {
             </option>
           ))}
         </select>
+        {duckErrors.categoria && (
+          <p id="error-categoria" className="mt-1 text-sm text-red-600">
+            {duckErrors.categoria}
+          </p>
+        )}
       </section>
 
       <FormInput
-        nombre="Imagen:"
+        nombre="Imagen *"
         id="imagen"
-        type="text"
-        placeholder="URL de la imagen"
+        type="url"
+        placeholder="URL de la imagen (http...)"
         value={duckData.imagen}
         onChange={handleDuckChange}
+        autoComplete="url"
         error={duckErrors.imagen}
         errorId="error-imagen"
       />
 
       <FormInput
-        nombre="Detalles:"
+        nombre="Detalles *"
         id="detalles"
         type="text"
         placeholder="Breve descripción del pato"
         value={duckData.detalles}
         onChange={handleDuckChange}
+        autoComplete="off"
         error={duckErrors.detalles}
         errorId="error-detalles"
       />
 
       <section>
         <label htmlFor="descripcion" className="contenedor__texto-largo">
-          Descripción:
+          Descripción *
         </label>
         <textarea
           id="descripcion"
           value={duckData.descripcion}
           placeholder="Descripción detallada del pato"
           onChange={handleDuckChange}
+          autoComplete="off"
           required
           rows="4"
           minLength={20}

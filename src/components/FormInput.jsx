@@ -1,5 +1,5 @@
 
-function FormInput({nombre, id, type, value, onChange, error, errorId, placeholder}) {
+function FormInput({nombre, id, type, value, onChange, error, errorId, placeholder, autocomplete}) {
     return (
          <section>
           <label htmlFor={id} className="contenedor__texto-largo">
@@ -11,12 +11,13 @@ function FormInput({nombre, id, type, value, onChange, error, errorId, placehold
             value={value}
             placeholder={placeholder}
             onChange={onChange}
+            autoComplete={autocomplete}
             required
             className={`mt-1 block w-full p-2 border ${
               error ? "input-error" : "border-gray-300"
             } rounded-md shadow-sm focus:ring-blue-800 focus:border-blue-800`}
             aria-invalid={!!error}
-            aria-describedby={error ? {errorId} : undefined}
+            aria-describedby={error ? errorId : undefined}
           />
           {error && (
             <p id={errorId} className="mt-1 text-sm text-red-600">

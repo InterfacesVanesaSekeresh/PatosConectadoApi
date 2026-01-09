@@ -1,31 +1,44 @@
 import FormInput from "./FormInput";
 
 /**
- * FormPhone Component
- * 
- * A multi-step form component for creating or editing duck product information.
- * Displays different form sections based on the current step (1 or 2).
- * 
+ * FormPhone - Mobile 2-step form for creating or editing duck entries
+ *
  * @component
- * @param {number} siguiente - Current form step (1 or 2)
- * @param {Function} setSiguiente - Function to update the current form step
- * @param {Object} duckData - Object containing duck product data (nombre, precio, categoria, imagen, detalles, descripcion)
- * @param {Object} duckErrors - Object containing validation error messages for each field
- * @param {Function} setDuckErrors - Function to update form validation errors
- * @param {string[]} categorias - Array of available product categories
- * @param {Function} handleDuckChange - Function to handle input field changes
- * 
- * @returns {JSX.Element} A form section with step-based conditional rendering
- * 
- * @description
- * Step 1: Collects basic product information (name, price, category) with validation
- * Step 2: Collects additional details (image URL, details, description)
- * 
- * Validation on Step 1:
- * - nombre (name): Required, must not be empty
- * - precio (price): Required, must be a valid number
- * - categoria (category): Required, must be selected from available options
+ * This component renders the mobile version of the duck creation form.
+ * It splits the form into two steps:
+ *
+ *  STEP 1 → nombre, precio, categoría
+ *  STEP 2 → imagen, detalles, descripción
+ *
+ * Validation for step 1 is handled in the parent component (Form),
+ * while step 2 validation is handled locally through validarPaso2().
+ *
+ * The component receives all form state and handlers from the parent,
+ * ensuring consistent validation, error handling, and focus behavior.
+ *
+ * @param {Object} props
+ * @param {number} props.siguiente - Current mobile step (1 or 2)
+ * @param {Function} props.setSiguiente - Updates the current step
+ *
+ * @param {Object} props.duckData - Duck form data
+ * @param {string} props.duckData.nombre - Duck name
+ * @param {string} props.duckData.precio - Duck price
+ * @param {string} props.duckData.categoria - Duck category
+ * @param {string} props.duckData.imagen - Duck image URL
+ * @param {string} props.duckData.detalles - Short details
+ * @param {string} props.duckData.descripcion - Long description
+ *
+ * @param {Object} props.duckErrors - Validation errors for each field
+ * @param {Function} props.setDuckErrors - Updates error state
+ *
+ * @param {string[]} props.categorias - List of available categories
+ *
+ * @param {Function} props.handleDuckChange - Updates form fields and clears errors
+ * @param {Function} props.handlePaso1 - Validates step 1 and moves to step 2
+ *
+ * @returns {JSX.Element} Mobile 2-step form layout
  */
+
 function FormPhone({
   siguiente,
   setSiguiente,
@@ -34,19 +47,22 @@ function FormPhone({
   setDuckErrors,
   categorias,
   handleDuckChange,
+  handlePaso1,
 }) {
-  const validarPaso1 = () => {
+  const validarPaso2 = () => {
     const errores = {};
-    if (!duckData.nombre.trim()) errores.nombre = "El nombre es obligatorio.";
 
-    if (!duckData.precio.trim()) {
-      errores.precio = "El precio es obligatorio.";
-    } else if (isNaN(Number(duckData.precio))) {
-      errores.precio = "El precio debe ser un número válido (Ej: 5.99).";
+    if (!duckData.imagen.startsWith("http")) {
+      errores.imagen = "La URL de la imagen es obligatoria y debe ser válida.";
     }
-    
-    if (!duckData.categoria.trim())
-      errores.categoria = "La categoría es obligatoria.";
+    if (!duckData.detalles.trim() || duckData.detalles.length < 5) {
+      errores.detalles =
+        "Los detalles son obligatorios y deben haber mín 5 carácteres..";
+    }
+    if (!duckData.descripcion.trim() || duckData.descripcion.length < 20) {
+      errores.descripcion =
+        "La descripción es obligatoria y debe tener un mín de 20 carácteres.";
+    }
 
     return errores;
   };
@@ -56,33 +72,38 @@ function FormPhone({
       {siguiente === 1 && (
         <section className="space-y-4">
           <FormInput
-            nombre="Pato nombre:"
+            nombre="Pato nombre *"
             id="nombre"
             type="text"
             placeholder="Ingresa el nombre del pato"
             value={duckData.nombre}
             onChange={handleDuckChange}
+            autoComplete="name"
             error={duckErrors.nombre}
             errorId="error-nombre"
           />
 
           <FormInput
-            nombre="Precio:"
+            nombre="Precio *"
             id="precio"
-            type="text"
+            type="number"
             placeholder="Ej: 5.99"
             value={duckData.precio}
             onChange={handleDuckChange}
+            autoComplete="price"
             error={duckErrors.precio}
             errorId="error-precio"
           />
 
           <section>
-            <label className="contenedor__texto-largo">Categoría:</label>
+            <label htmlFor="categoria" className="contenedor__texto-largo">
+              Categoría *
+            </label>
             <select
               id="categoria"
               value={duckData.categoria}
               onChange={handleDuckChange}
+              autoComplete="category"
               className={`mt-1 block w-full p-2 border ${
                 duckErrors.categoria ? "input-error" : "border-gray-300"
               } rounded-md`}
@@ -101,19 +122,7 @@ function FormPhone({
             )}
           </section>
 
-          <button
-            type="button"
-            onClick={() => { const errores = validarPaso1();
-
-            //Si hay errores, no avanzar
-            if (Object.keys(errores).length > 0) { 
-                setDuckErrors(errores); 
-                return;
-            }
-            setSiguiente(2);
-        }}
-            className="btn"
-          >
+          <button type="button" onClick={handlePaso1} className="btn">
             Siguiente
           </button>
         </section>
@@ -122,35 +131,40 @@ function FormPhone({
       {siguiente === 2 && (
         <section className="space-y-4">
           <FormInput
-            nombre="Imagen:"
+            nombre="Imagen *"
             id="imagen"
             type="text"
-            placeholder="URL de la imagen"
+            placeholder="URL de la imagen (http...)"
             value={duckData.imagen}
             onChange={handleDuckChange}
+            autoComplete="url"
             error={duckErrors.imagen}
             errorId="error-imagen"
           />
 
           <FormInput
-            nombre="Detalles:"
+            nombre="Detalles *"
             id="detalles"
             type="text"
             placeholder="Breve descripción del pato"
             value={duckData.detalles}
             onChange={handleDuckChange}
+            autoComplete="off"
             error={duckErrors.detalles}
             errorId="error-detalles"
           />
 
           <section>
-            <label className="contenedor__texto-largo">Descripción:</label>
+            <label className="contenedor__texto-largo">Descripción *</label>
             <textarea
               id="descripcion"
+              required
               value={duckData.descripcion}
               placeholder="Descripción detallada del pato"
               onChange={handleDuckChange}
+              autoComplete="off"
               rows="4"
+              minLength={20}
               className={`mt-1 block w-full p-2 border ${
                 duckErrors.descripcion ? "input-error" : "border-gray-300"
               } rounded-md`}
@@ -168,9 +182,14 @@ function FormPhone({
             >
               Atrás
             </button>
-
             <button
               type="submit"
+              onClick={() => {
+                const errores = validarPaso2();
+                if (Object.keys(errores).length > 0) {
+                  setDuckErrors(errores);
+                }
+              }}
               className="btn"
             >
               Añadir pato
