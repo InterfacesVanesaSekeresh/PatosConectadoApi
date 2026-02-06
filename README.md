@@ -7,6 +7,8 @@ https://apiproductos-vix4.onrender.com/productos
 ## Vercel
 https://patos-conectado-api-repo.vercel.app
 
+## Electron (zip con la App y los patos)
+https://github.com/InterfacesVanesaSekeresh/ElectronYPatos
 
 ## Repositorio del Proyecto
 https://github.com/InterfacesVanesaSekeresh/PatosConectadoApi
